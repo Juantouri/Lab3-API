@@ -30,8 +30,7 @@ func getBooks(w http.ResponseWriter, r *http.Request) {
 // Retornar un libro por id
 func getBook(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	params := mux.Vars(r) // Gets params
-	// Loop through books and find one with the id from the params
+	params := mux.Vars(r)
 	for _, item := range libros {
 		if item.ID == params["id"] {
 			json.NewEncoder(w).Encode(item)
@@ -84,7 +83,8 @@ func main() {
 	// Router inicial
 	r := mux.NewRouter()
 
-	libros = append(libros, Libro{ID: "1", Titulo: "Harry Potter", Autor: &Autor{Nombre: "Joanne", Apellido: "Rowling​"}})
+	//creamos algunos libros para testear
+	libros = append(libros, Libro{ID: "1", Titulo: "Harry Potter", Autor: &Autor{Nombre: "J. K.", Apellido: "Rowling​"}})
 	libros = append(libros, Libro{ID: "2", Titulo: "El Arte de la guerra", Autor: &Autor{Nombre: "Sun", Apellido: "Tzu"}})
 	libros = append(libros, Libro{ID: "3", Titulo: "El Señor de los anillos", Autor: &Autor{Nombre: "J.R.R", Apellido: "Tolkien"}})
 	libros = append(libros, Libro{ID: "4", Titulo: "El resplandor", Autor: &Autor{Nombre: "Stephen", Apellido: "King"}})
